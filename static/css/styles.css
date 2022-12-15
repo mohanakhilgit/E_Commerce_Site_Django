@@ -1,0 +1,78 @@
+body {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 500;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: #54B435;
+}
+
+a:hover {
+    color: #FF7000;
+}
+
+.navbar {
+    text-transform: uppercase;
+    line-height: 1.5;
+    letter-spacing: .1em;
+}
+
+.nav-item {
+    padding: 0 6px;
+}
+
+.card {
+    border: none;
+    padding: 5px;
+}
+
+.product:hover {
+    border: solid 1px #CCD6A6;
+    background-color: #E8F3D6;
+}
+
+.product-img {
+    width: 200px;
+    height: 300px;
+}
+
+.products-col {
+    padding: 20px 10px;
+}
+
+
+/* ---product page--- */
+
+.product-page {
+    margin-bottom: 50px;
+}
+
+
+/* ---Footer Page--- */
+
+.footer {
+    padding: 20px;
+    background-color: #88A47C;
+}
+
+.footer-text {
+    color: white;
+    letter-spacing: .2rem;
+    font-weight: 900;
+}
+
+.contact-icon {
+    color: black;
+    font-size: 45px;
+    padding: 30px 20px;
+}
+
+.contact-icon:hover {
+    color: white;
+}

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+
+{% load static %}
+
+{% block metadescription %}
+
+{% if category %}
+{{ category.description|truncatewords:155 }}
+{% else %}
+Welcome to OneKart. Your One-Stop for Everything.
+{% endif %}
+
+{% endblock %}
+
+
+{% block title %}
+
+{% if category %}
+{{ category.name }} - OneKart
+{% else %}
+Welcome to OneKart.
+{% endif %}
+
+{% endblock %}
+
+
+{% block body %}
+
+<div>
+
+    {% if category %}
+    <div>
+        <img src="{{ category.image.url }}" alt="{{ category.name }}" width="1350px" height="600px">
+    </div>
+    <br>
+    <div>
+        <h1>{{ category.name }}</h1>
+        <p>{{ category.description }}</p>
+        <hr>
+    </div>
+    {% else %}
+    <div>
+        <img src="{% static 'image/banner.png' %}" alt="banner image" width="1350px" height="">
+    </div>
+    <br>
+
+    <hr>
+
+    {% endif %}
+
+</div>
+
+<div class="product-container container">
+
+    <h1>All Products</h1>
+
+    <div class="row text-center mx-auto">
+
+        {% for product in products.object_list %}
+        <div class="products-col text-center col-md-4 mx-auto">
+
+            <a href="{{ product.get_url }}">
+                <div class="product card shadow" style="width: 18rem;">
+
+                    <div>
+                        <img class="product-img card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </div>
+                    <div class="card-body">
+                        <h4>{{ product.name }}</h4>
+                        <div class="card-footer">
+                            <h5>₹{{ product.price }}</h5>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <hr>
+    
+    <div class="mx-auto">
+        {% if products.paginator.num_pages > 1 %}
+        <div class="text-center">
+            {% for page in products.paginator.page_range %}
+            <a href="?page={{ page }}" class="btn btn-light btn-sm {% if products.number == page %} active {% endif %}">
+                {{ page }}
+            </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+
+    <hr>
+
+</div>
+
+{% endblock %}

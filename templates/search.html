@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+
+OneKart - Your One Stop for Everything.
+
+{% endblock %}
+
+
+{% block title %}
+
+Search - OneKart
+
+{% endblock %}
+
+
+{% block body %}
+<div class="product-container container">
+
+<div>
+    <p class="my_search_text text-center">
+        You have searched for <b>{{ query }}</b>.
+    </p>
+</div>
+
+    <h1>All Products</h1>
+
+    <div class="row mx-auto">
+
+        {% for product in products %}
+        <div class="products-col text-center col-md-4 mx-auto">
+
+            <a href="{{ product.get_url }}">
+                <div class="product card shadow" style="width: 18rem;">
+
+                    <div>
+                        <img class="product-img card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                    </div>
+                    <div class="card-body">
+                        <h4>{{ product.name }}</h4>
+                        <div class="card-footer">
+                            <h5>₹{{ product.price }}</h5>
+                        </div>
+                    </div>
+
+                </div>
+            </a>
+        </div>
+
+            {% empty %}
+            <div class="row mx-auto">
+                <p class="my_search_text">0 Results Found for <b>{{ query }}</b>.</p>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

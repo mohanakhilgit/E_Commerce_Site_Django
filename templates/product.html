@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block metadescription %}
+
+{{ product.description|truncatewords:155 }}
+
+{% endblock %}
+
+
+{% block title %}
+
+{{ product.name }} - OneKart
+
+{% endblock %}
+
+
+{% block body %}
+
+<div>
+    <p>
+        <a href="{% url 'website:home' %}">Home</a> |
+        <a href="{{ product.category.get_url }}">{{ product.category }}</a>
+        <hr>
+    </p>
+</div>
+<br>
+<div class="product-page container">
+    <div class="row">
+        <h1>{{ product.name }}</h1>
+        <p>₹{{ product.price }}</p>
+        <hr>
+        <div class="card shadow col-md-4">
+            <div>
+                <img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="product-description">
+
+                <h4>Product Description</h4>
+                <p>{{ product.description }}</p>
+                {% if product.stock <= 0 %} <p><b>Out of Stock</b></p>
+                    {% else %}
+                    <a class="btn btn-primary" href="{% url 'cart:add_cart' product.id %}">Add to Cart</a>
+                    {% endif %}
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

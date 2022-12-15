@@ -1,0 +1,44 @@
+{% load static %}
+
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'website:home' %}"><img src="{% static 'image/logo.png' %}" alt="Logo Image" style="width: 50px;"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'website:home' %}">Home</a>
+                </li>
+                {% if item_count > 0 %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'cart:cart_detail' %}"><i class="fa-solid fa-cart-shopping"></i>({{ item_count }})</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="{% url 'cart:cart_detail' %}"><i class="fa-solid fa-cart-shopping"></i></a>
+                </li>
+                {% endif %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        All Categories
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        {% for cat in links %}
+                        <li><a class="dropdown-item" href="{{ cat.get_url }}">{{ cat }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                </li>
+            </ul>
+            <form class="d-flex" action="{% url 'search:search_result' %}" method="GET" role="search">
+                <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </div>
+</nav>
